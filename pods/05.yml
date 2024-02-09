@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: demo-secret
+data:
+  URL: Z29vZ2xlLmNvbQ==
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod05
+spec:
+  containers:
+  - name: centos
+    image: rkalluru/debug:centos8
+    envFrom:
+      - secretRef:
+          name: demo-secret
+
