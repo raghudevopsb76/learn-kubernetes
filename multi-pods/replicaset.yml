@@ -1,21 +1,21 @@
-# apiVersion: apps/v1
-# kind: ReplicaSet
-# metadata:
-#   name: nginx
-# spec:
-#   replicas: 0
-#   selector:
-#     matchLabels:
-#       app: nginx
-#   template:
-#     ## Pod Labels
-#     metadata:
-#       labels:
-#         app: nginx
-#     spec:
-#       containers:
-#       - name: nginx
-#         image: nginx
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    ## Pod Labels
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
 
 ---
 apiVersion: v1
