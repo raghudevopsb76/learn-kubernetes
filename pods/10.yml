@@ -43,3 +43,23 @@ spec:
   containers:
   - name: centos
     image: rkalluru/debug:centos8
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-pod-affinity
+  labels:
+    purpose: monitoring
+spec:
+  affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  purpose: monitoring
+              topologyKey: "kubernetes.io/hostname"
+  containers:
+  - name: centos
+    image: rkalluru/debug:centos8
