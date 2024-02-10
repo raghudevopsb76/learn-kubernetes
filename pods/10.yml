@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aff1
+  labels:
+    purpose: monitoring
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: purpose
+              operator: In
+              values:
+              - monitoring
+          topologyKey: topology.kubernetes.io/zone
+  containers:
+  - name: centos
+    image: rkalluru/debug:centos8
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aff2
+  labels:
+    purpose: monitoring
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: purpose
+              operator: In
+              values:
+              - monitoring
+          topologyKey: topology.kubernetes.io/zone
+  containers:
+  - name: centos
+    image: rkalluru/debug:centos8
